@@ -108,6 +108,7 @@ def main():
     dataset_name = args.dataset_name
 
     run = Run.get_context()
+    mlflow.set_tracking_uri(run.experiment.workspace.get_mlflow_tracking_uri())
 
     print("Getting training parameters")
 
