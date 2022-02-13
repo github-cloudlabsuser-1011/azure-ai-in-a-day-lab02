@@ -44,6 +44,12 @@ stages:
           # Invoke the Python building and publishing a training pipeline
           python -m COVID19Articles.ml_service.pipelines.COVID19Articles_build_train_pipeline
       displayName: 'Publish Azure Machine Learning Pipeline'
+  - job: "Approve_Pipeline_Execution"
+    dependsOn: "Model_CI_Pipeline"
+    displayName: "Approve AML pipeline execution"
+    timeoutInMinutes: 0
+    pool: server
+    steps:
     - task: ManualIntervention@8
       inputs:
         instructions: 'Please approve the execution of the AML pipeline'
