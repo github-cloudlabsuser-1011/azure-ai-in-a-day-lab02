@@ -54,7 +54,7 @@ def main():
         name="data_file_path", default_value="none"
     )
     caller_run_id_param = PipelineParameter(name="caller_run_id", default_value="none")  # NOQA: E501
-    
+
     # Get dataset name
     dataset_name = e.dataset_name
 
@@ -98,7 +98,7 @@ def main():
     pipeline_data = PipelineData(
         "pipeline_data", datastore=aml_workspace.get_default_datastore()
     )
-    
+
     # Create training output data to pass to evaluate step
     train_output_data = OutputFileDatasetConfig(
         name="train_output", 
