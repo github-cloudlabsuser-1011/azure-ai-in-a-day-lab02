@@ -136,7 +136,7 @@ def main():
         script_name=e.evaluate_script_path,
         compute_target=aml_compute,
         source_directory=e.sources_directory_train,
-        inputs=[train_output_data.as_input()]
+        inputs=[train_output_data.as_input()],
         arguments=[
             "--model_name",
             model_name_param,
