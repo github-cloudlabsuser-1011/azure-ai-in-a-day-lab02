@@ -102,6 +102,9 @@ if (run_id == 'amlcompute'):
 model_name = args.model_name
 metric_eval = "mse"
 
+download_location = run.input_datasets['train_input']
+print(f'Download location: {download_location}')
+
 allow_run_cancel = args.allow_run_cancel
 # Parameterize the matrices on which the models should be compared
 # Add golden data set on which all the model performance can be evaluated
