@@ -166,7 +166,7 @@ def main():
         run.log(k, v)
         # Cannot use this anymore due to AML SDK bug - run.parent.log fails randomly
         # run.parent.log(k, v)
-        
+
     # Ensure the target directory exists and then save model metrics to JSON file
     os.makedirs(os.path.dirname(args.train_output_path), exist_ok=True)
     with open(f'{args.output_path}/model_metrics.json', 'w') as f:
