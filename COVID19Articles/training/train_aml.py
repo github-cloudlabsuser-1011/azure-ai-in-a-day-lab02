@@ -113,7 +113,7 @@ def main():
     dataset_version = args.dataset_version
     data_file_path = args.data_file_path
     dataset_name = args.dataset_name
-    train_output_path = args.train_output_path
+    # train_output_path = args.train_output_path
 
     run = Run.get_context()
     mlflow.set_tracking_uri(run.experiment.workspace.get_mlflow_tracking_uri())
