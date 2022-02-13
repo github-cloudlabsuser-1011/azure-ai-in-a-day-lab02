@@ -93,13 +93,7 @@ parser.add_argument(
     default="true",
 )
 
-parser.add_argument(
-    "--train_output"
-)
-
 args = parser.parse_args()
-
-print("Argument [train_output]: %s" % args.train_output)
 
 if (args.run_id is not None):
     run_id = args.run_id
@@ -107,7 +101,6 @@ if (run_id == 'amlcompute'):
     run_id = run.parent.id
 model_name = args.model_name
 metric_eval = "mse"
-train_output = args.train_output
 
 allow_run_cancel = args.allow_run_cancel
 # Parameterize the matrices on which the models should be compared
