@@ -102,7 +102,7 @@ def main():
     # Create training output data to pass to evaluate step
     train_output_data = OutputFileDatasetConfig(
         name="train_output",
-        destination=(aml_workspace.get_default_datastore(), "training/{run-id}/model_metrics.json")).as_upload()
+        destination=(aml_workspace.get_default_datastore(), "training/{run-id}/model-metrics")).as_upload()
 
     train_step = PythonScriptStep(
         name="Train Model",
