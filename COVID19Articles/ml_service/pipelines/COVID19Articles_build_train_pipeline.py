@@ -136,13 +136,12 @@ def main():
         script_name=e.evaluate_script_path,
         compute_target=aml_compute,
         source_directory=e.sources_directory_train,
+        inputs=[train_output_data.as_input()]
         arguments=[
             "--model_name",
             model_name_param,
             "--allow_run_cancel",
-            e.allow_run_cancel,
-            "--train_output",
-            train_output_data.as_input()
+            e.allow_run_cancel
         ],
         runconfig=run_config,
         allow_reuse=False,
