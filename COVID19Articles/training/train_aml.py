@@ -91,7 +91,7 @@ def main():
               to always get the desired dataset version\
               rather than the one used while the pipeline creation")
     )
-    
+
     parser.add_argument(
         "--train_output_path",
         type=str,
