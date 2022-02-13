@@ -168,7 +168,7 @@ def main():
 
     # Ensure the target directory exists and then save model metrics to JSON file
     os.makedirs(os.path.dirname(args.train_output_path), exist_ok=True)
-    with open(args.train_output_path, 'w') as f:
+    with open(f'{args.train_output_path}/model_metrics.json', 'w') as f:
         json.dump(metrics, f)
 
     # Pass model file to next step
