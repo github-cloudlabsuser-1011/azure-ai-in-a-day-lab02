@@ -67,7 +67,7 @@ variables:
 
   # Flag to allow rebuilding the AML Environment after it was built for the first time. This enables dependency updates from conda_dependencies.yaml.
   - name: AML_REBUILD_ENVIRONMENT
-    value: "true"
+    value: "false"
 
   # Variables below are used for controlling various aspects of batch scoring
   - name: USE_GPU_FOR_SCORING
