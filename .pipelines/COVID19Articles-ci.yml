@@ -44,6 +44,10 @@ stages:
           # Invoke the Python building and publishing a training pipeline
           python -m COVID19Articles.ml_service.pipelines.COVID19Articles_build_train_pipeline
       displayName: 'Publish Azure Machine Learning Pipeline'
+    - task: ManualIntervention@8
+      inputs:
+        instructions: 'Please approve the execution of the AML pipeline'
+        emailRecipients: 'github_cloudlabsuser_1011@cloudlabsaiuser.com'
 
 - stage: 'Trigger_AML_Pipeline'
   displayName: 'Train and evaluate model'
@@ -86,11 +90,6 @@ stages:
         PipelineId: '$(AMLPIPELINE_ID)'
         ExperimentName: '$(EXPERIMENT_NAME)'
         PipelineParameters: '"ParameterAssignments": {"model_name": "$(MODEL_NAME)"}, "tags": {"BuildId": "$(Build.BuildId)", "BuildUri": "$(BUILD_URI)"}, "StepTags": {"BuildId": "$(Build.BuildId)", "BuildUri": "$(BUILD_URI)"}'
-
-    - task: ManualIntervention@8
-      inputs:
-        instructions: 'Please approve registered model'
-        emailRecipients: 'github_cloudlabsuser_1011@cloudlabsaiuser.com'
   - job: "Training_Run_Report"
     dependsOn: "Run_ML_Pipeline"
     condition: always()
