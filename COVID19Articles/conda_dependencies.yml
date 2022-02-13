@@ -39,3 +39,4 @@ dependencies:
       - azure-storage-blob
       
       - mlflow
+      - azureml-mlflow
