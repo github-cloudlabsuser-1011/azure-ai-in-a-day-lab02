@@ -157,6 +157,7 @@ def main():
     for (k, v) in metrics.items():
         run.log(k, v)
         run.parent.log(k, v)
+        mlflow.log_metric(k, v)
 
     # Pass model file to next step
     os.makedirs(step_output_path, exist_ok=True)
