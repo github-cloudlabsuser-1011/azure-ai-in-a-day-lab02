@@ -47,7 +47,7 @@ stages:
   - job: "Validate_Code_Quality"
     dependsOn: "Model_CI_Pipeline"
     displayName: "Validate code quality"
-    timeoutInMinutes: 0
+    timeoutInMinutes: 15
     pool: server
     steps:
     - task: ManualValidation@0
