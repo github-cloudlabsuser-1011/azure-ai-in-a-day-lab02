@@ -94,7 +94,6 @@ def main():
 
     parser.add_argument(
         "--train_output_path",
-        type=str,
         help=("Output location for training info containing model metrics.")
     )
 
