@@ -141,6 +141,8 @@ def main():
             model_name_param,
             "--allow_run_cancel",
             e.allow_run_cancel,
+            "--train_output",
+            train_output_data.as_input()
         ],
         runconfig=run_config,
         allow_reuse=False,
