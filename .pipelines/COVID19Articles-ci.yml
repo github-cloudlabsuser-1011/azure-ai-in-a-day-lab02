@@ -53,7 +53,8 @@ stages:
     - task: ManualValidation@0
       timeoutInMinutes: 10
       inputs:
-        notifyUsers: 'github_cloudlabsuser_1011@cloudlabsaiuser.com'
+        notifyUsers: |
+          github_cloudlabsuser_1011@cloudlabsaiuser.com
         instructions: 'Please validate the code quality analysis results and resume.'
         onTimeout: reject
 
