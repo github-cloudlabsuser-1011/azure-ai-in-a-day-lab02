@@ -3,6 +3,7 @@ from azureml.pipeline.steps import PythonScriptStep
 from azureml.pipeline.core import Pipeline, PipelineData
 from azureml.core import Workspace, Dataset, Datastore
 from azureml.core.runconfig import RunConfiguration
+from azureml.data import OutputFileDatasetConfig
 from COVID19Articles.ml_service.pipelines.load_sample_data import create_sample_data_csv
 from COVID19Articles.ml_service.util.attach_compute import get_compute
 from COVID19Articles.ml_service.util.env_variables import Env
@@ -53,7 +54,7 @@ def main():
         name="data_file_path", default_value="none"
     )
     caller_run_id_param = PipelineParameter(name="caller_run_id", default_value="none")  # NOQA: E501
-
+    
     # Get dataset name
     dataset_name = e.dataset_name
 
@@ -97,6 +98,11 @@ def main():
     pipeline_data = PipelineData(
         "pipeline_data", datastore=aml_workspace.get_default_datastore()
     )
+    
+    # Create training output data to pass to evaluate step
+    train_output_data = OutputFileDatasetConfig(
+        name="train_output", 
+        destination=(aml_workspace.get_default_datastore(), "training/{run-id}/model_metrics.json")).as_upload()
 
     train_step = PythonScriptStep(
         name="Train Model",
@@ -117,6 +123,8 @@ def main():
             caller_run_id_param,
             "--dataset_name",
             dataset_name,
+            "--train_output_path",
+            train_output_data
         ],
         runconfig=run_config,
         allow_reuse=True,
