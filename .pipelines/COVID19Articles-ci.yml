@@ -44,16 +44,18 @@ stages:
           # Invoke the Python building and publishing a training pipeline
           python -m COVID19Articles.ml_service.pipelines.COVID19Articles_build_train_pipeline
       displayName: 'Publish Azure Machine Learning Pipeline'
-  - job: "Approve_Pipeline_Execution"
+  - job: "Validate_Code_Quality"
     dependsOn: "Model_CI_Pipeline"
-    displayName: "Approve AML pipeline execution"
+    displayName: "Validate code quality"
     timeoutInMinutes: 0
     pool: server
     steps:
-    - task: ManualIntervention@8
+    - task: ManualValidation@0
+      timeoutInMinutes: 10
       inputs:
-        instructions: 'Please approve the execution of the AML pipeline'
-        emailRecipients: 'github_cloudlabsuser_1011@cloudlabsaiuser.com'
+        notifyUsers: 'github_cloudlabsuser_1011@cloudlabsaiuser.com'
+        instructions: 'Please validate the code quality analysis results and resume.'
+        onTimeout: reject
 
 - stage: 'Trigger_AML_Pipeline'
   displayName: 'Train and evaluate model'
