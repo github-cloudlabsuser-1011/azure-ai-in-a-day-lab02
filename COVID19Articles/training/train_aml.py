@@ -25,6 +25,7 @@ POSSIBILITY OF SUCH DAMAGE.
 """
 from azureml.core.run import Run
 from azureml.core import Dataset, Datastore, Workspace
+import mlflow
 import os
 import argparse
 import joblib
